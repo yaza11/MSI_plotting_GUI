@@ -90,7 +90,7 @@
          </size>
         </property>
         <property name="toolTip">
-         <string>Input the file path to an txt file with spectra exported from a .d folder by pasting the path direectly into the box or browsing the directories. Afterwards press &quot;Load&quot; to load in the data.</string>
+         <string>Input the file path to an txt file with spectra exported from a .d folder by pasting the path direectly into the box or browsing the directories. Afterwards press &quot;Load&quot; to load in the data. You can directly paste a file path into here.</string>
         </property>
        </widget>
       </item>
@@ -111,7 +111,7 @@
        </spacer>
       </item>
       <item>
-       <widget class="QPushButton" name="btn_browse_file_spectra">
+       <widget class="QPushButton" name="btn_browse_data">
         <property name="toolTip">
          <string>Open file manager and select txt-file to read</string>
         </property>
@@ -261,7 +261,7 @@
          </size>
         </property>
         <property name="toolTip">
-         <string>Enter the directory path and name of the mass file list</string>
+         <string>Enter the directory path and name of the mass file list. You can directly paste a file path into here.</string>
         </property>
        </widget>
       </item>
@@ -284,7 +284,7 @@
       <item>
        <widget class="QPushButton" name="btn_browse_masses">
         <property name="toolTip">
-         <string>Open file manager and select </string>
+         <string>Open file manager and select a mass file</string>
         </property>
         <property name="text">
          <string>Browse</string>
@@ -309,6 +309,9 @@
       </item>
       <item>
        <widget class="QLabel" name="label_3">
+        <property name="toolTip">
+         <string>The name of the column with the masses. This value is necessary but will be infered from the data if it has a common name like 'mass' or 'mz'.</string>
+        </property>
         <property name="text">
          <string>column mz:</string>
         </property>
@@ -350,6 +353,9 @@
           <height>0</height>
          </size>
         </property>
+        <property name="toolTip">
+         <string>Enter the name of the column with masses here</string>
+        </property>
        </widget>
       </item>
       <item>
@@ -370,6 +376,9 @@
       </item>
       <item>
        <widget class="QLabel" name="label_4">
+        <property name="toolTip">
+         <string>The name of the column with the labels. This value is not necessary and will be infered from the data if it has a common name like 'name', 'label' or 'title'. If you want to use the masses as title, enter an anvalid column (e.g. xxx).</string>
+        </property>
         <property name="text">
          <string>column names:</string>
         </property>
@@ -411,6 +420,9 @@
           <height>0</height>
          </size>
         </property>
+        <property name="toolTip">
+         <string>Enter the name of the column with labels here</string>
+        </property>
        </widget>
       </item>
       <item>
@@ -431,6 +443,9 @@
       </item>
       <item>
        <widget class="QLabel" name="label_5">
+        <property name="toolTip">
+         <string>You can order the masses in the file using this column. Also, if rows have the same index, they will be plotted together in one plot with colors.</string>
+        </property>
         <property name="text">
          <string>column indizes:</string>
         </property>
@@ -472,6 +487,9 @@
           <height>0</height>
          </size>
         </property>
+        <property name="toolTip">
+         <string>Enter the name of the column with indizes here</string>
+        </property>
        </widget>
       </item>
       <item>
@@ -492,6 +510,9 @@
       </item>
       <item>
        <widget class="QPushButton" name="btn_read_masses">
+        <property name="toolTip">
+         <string>Load in the mass file</string>
+        </property>
         <property name="text">
          <string>Read</string>
         </property>
@@ -565,7 +586,7 @@
        </spacer>
       </item>
       <item>
-       <widget class="QPushButton" name="btn_prev_mass">
+       <widget class="QPushButton" name="btn_prev">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
           <horstretch>0</horstretch>
@@ -590,6 +611,9 @@
           <height>50</height>
          </size>
         </property>
+        <property name="toolTip">
+         <string>Plot previous index in mass file</string>
+        </property>
         <property name="text">
          <string>&lt;</string>
         </property>
@@ -613,6 +637,9 @@
       </item>
       <item>
        <widget class="QLabel" name="label_6">
+        <property name="toolTip">
+         <string>The mass of the compound to plot. You can plot up to three compounds at the same time (separated by semicolons)</string>
+        </property>
         <property name="text">
          <string>plot mz [Da]:</string>
         </property>
@@ -674,6 +701,9 @@
       </item>
       <item>
        <widget class="QLabel" name="label_23">
+        <property name="toolTip">
+         <string>The title will show up at the top of the figure. If left blank, the mass will be used as title</string>
+        </property>
         <property name="text">
          <string>title:</string>
         </property>
@@ -709,6 +739,9 @@
           <height>16777215</height>
          </size>
         </property>
+        <property name="toolTip">
+         <string>Enter your title here, for multiple compounds separate titles by semicolons</string>
+        </property>
        </widget>
       </item>
       <item>
@@ -729,6 +762,9 @@
       </item>
       <item>
        <widget class="QPushButton" name="btn_plot">
+        <property name="toolTip">
+         <string>Plot the compound(s)</string>
+        </property>
         <property name="text">
          <string>Plot</string>
         </property>
@@ -754,7 +790,7 @@
        </spacer>
       </item>
       <item>
-       <widget class="QPushButton" name="btn_next_mass">
+       <widget class="QPushButton" name="btn_next">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
           <horstretch>0</horstretch>
@@ -772,6 +808,9 @@
           <width>25</width>
           <height>16777215</height>
          </size>
+        </property>
+        <property name="toolTip">
+         <string>Plot next index in mass file</string>
         </property>
         <property name="text">
          <string>&gt;</string>
@@ -796,6 +835,9 @@
       </item>
       <item>
        <widget class="QPushButton" name="btn_all_mass">
+        <property name="toolTip">
+         <string>Plot compounds for all unique indizes in the mass file list</string>
+        </property>
         <property name="text">
          <string>all</string>
         </property>
@@ -819,6 +861,9 @@
       </item>
       <item>
        <widget class="QPushButton" name="btn_stop">
+        <property name="toolTip">
+         <string>Stop plotting all compounds (spamming this button helps)</string>
+        </property>
         <property name="text">
          <string>stop</string>
         </property>
@@ -971,6 +1016,9 @@
           </property>
           <item row="10" column="0">
            <widget class="QLabel" name="label_7">
+            <property name="toolTip">
+             <string>Deprecated. Will be ignored.</string>
+            </property>
             <property name="text">
              <string>Resolution png [dpi]</string>
             </property>
@@ -987,10 +1035,16 @@
             <property name="text">
              <string>600</string>
             </property>
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
            </widget>
           </item>
           <item row="4" column="0">
            <widget class="QLabel" name="label_8">
+            <property name="toolTip">
+             <string>The shape of window function. Max will take the largest value in the window. This is the recommended option.</string>
+            </property>
             <property name="text">
              <string>kernel mode</string>
             </property>
@@ -998,6 +1052,9 @@
           </item>
           <item row="1" column="0">
            <widget class="QLabel" name="label_9">
+            <property name="toolTip">
+             <string>The width of the mass window used for calculating the intensity around the desired mass. Should be 2x the mass uncertainty. </string>
+            </property>
             <property name="text">
              <string>width mass window [mDa]</string>
             </property>
@@ -1005,6 +1062,9 @@
           </item>
           <item row="2" column="0">
            <widget class="QLabel" name="label_10">
+            <property name="toolTip">
+             <string>Choose to plot intensities directly or signal to noise ratios.</string>
+            </property>
             <property name="text">
              <string>plotting mode</string>
             </property>
@@ -1012,6 +1072,9 @@
           </item>
           <item row="5" column="0">
            <widget class="QLabel" name="label_11">
+            <property name="toolTip">
+             <string>The number of depth tick labels</string>
+            </property>
             <property name="text">
              <string>number labels</string>
             </property>
@@ -1019,6 +1082,9 @@
           </item>
           <item row="6" column="0">
            <widget class="QLabel" name="label_12">
+            <property name="toolTip">
+             <string>The unit of depth tick labels</string>
+            </property>
             <property name="text">
              <string>unit labels</string>
             </property>
@@ -1026,6 +1092,9 @@
           </item>
           <item row="7" column="0">
            <widget class="QLabel" name="label_13">
+            <property name="toolTip">
+             <string>The depth of the top edge of the image. In the same unit as unit labels.</string>
+            </property>
             <property name="text">
              <string>depth offset</string>
             </property>
@@ -1033,6 +1102,9 @@
           </item>
           <item row="8" column="0">
            <widget class="QLabel" name="label_14">
+            <property name="toolTip">
+             <string>The spacing of measurement points. If left blank, pixel units will be used.</string>
+            </property>
             <property name="text">
              <string>distance pixels [µm]</string>
             </property>
@@ -1040,6 +1112,9 @@
           </item>
           <item row="0" column="0">
            <widget class="QLabel" name="label_15">
+            <property name="toolTip">
+             <string>Orientate image vertically </string>
+            </property>
             <property name="text">
              <string>flip image</string>
             </property>
@@ -1072,8 +1147,11 @@
               <height>16777215</height>
              </size>
             </property>
+            <property name="toolTip">
+             <string>Common values are 6 and 10 (uncertainty of 3 and 5 mDa respectively)</string>
+            </property>
             <property name="text">
-             <string>3</string>
+             <string>6</string>
             </property>
            </widget>
           </item>
@@ -1093,12 +1171,12 @@
             </property>
             <item>
              <property name="text">
-              <string>signal to noise ratio</string>
+              <string>intensities</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>intensities</string>
+              <string>signal to noise ratio</string>
              </property>
             </item>
            </widget>
@@ -1119,17 +1197,17 @@
             </property>
             <item>
              <property name="text">
+              <string>max</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
               <string>gauss</string>
              </property>
             </item>
             <item>
              <property name="text">
               <string>rect</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>max</string>
              </property>
             </item>
            </widget>
@@ -1225,6 +1303,9 @@
           </item>
           <item row="11" column="0">
            <widget class="QLabel" name="label_18">
+            <property name="toolTip">
+             <string>The folder in which images will be saved.</string>
+            </property>
             <property name="text">
              <string>folder save images</string>
             </property>
@@ -1232,6 +1313,9 @@
           </item>
           <item row="3" column="0">
            <widget class="QLabel" name="label_20">
+            <property name="toolTip">
+             <string>Optionally scale the intensitities of each pixel to have median of 1 (recommended)</string>
+            </property>
             <property name="text">
              <string>norm spectra</string>
             </property>
@@ -1241,6 +1325,9 @@
            <widget class="QCheckBox" name="checkBox_norm_spectra">
             <property name="text">
              <string/>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
             </property>
            </widget>
           </item>
@@ -1257,6 +1344,9 @@
                 <height>16777215</height>
                </size>
               </property>
+              <property name="toolTip">
+               <string>You can paste a file path into this field</string>
+              </property>
              </widget>
             </item>
             <item>
@@ -1272,6 +1362,9 @@
                 <width>100</width>
                 <height>16777215</height>
                </size>
+              </property>
+              <property name="toolTip">
+               <string>Open the file browser to select a folder.</string>
               </property>
               <property name="text">
                <string>Browse</string>
@@ -1295,6 +1388,9 @@
           </item>
           <item row="9" column="0">
            <widget class="QLabel" name="label_24">
+            <property name="toolTip">
+             <string>Deprecated. Will be ignored</string>
+            </property>
             <property name="text">
              <string>aspect ratio 1:</string>
             </property>
@@ -1316,6 +1412,9 @@
             </property>
             <property name="text">
              <string>1.0621468898305086</string>
+            </property>
+            <property name="readOnly">
+             <bool>true</bool>
             </property>
            </widget>
           </item>
@@ -1379,6 +1478,9 @@
           </property>
           <property name="focusPolicy">
            <enum>Qt::NoFocus</enum>
+          </property>
+          <property name="toolTip">
+           <string>Statistic about the data will show up here once loaded in.</string>
           </property>
           <property name="editTriggers">
            <set>QAbstractItemView::NoEditTriggers</set>
@@ -1554,6 +1656,9 @@
       </item>
       <item>
        <widget class="QCheckBox" name="checkBox_autosave">
+        <property name="toolTip">
+         <string>If this option is enabled, each plot will automatically be saved to the specified image folder</string>
+        </property>
         <property name="text">
          <string>autosave plots</string>
         </property>
@@ -1577,6 +1682,9 @@
       </item>
       <item>
        <widget class="QPushButton" name="btn_save_plot">
+        <property name="toolTip">
+         <string>Save the plot in the specified folder with the specified name.</string>
+        </property>
         <property name="text">
          <string>save plot</string>
         </property>
@@ -1629,6 +1737,9 @@
           <verstretch>0</verstretch>
          </sizepolicy>
         </property>
+        <property name="toolTip">
+         <string>name of the saved png</string>
+        </property>
        </widget>
       </item>
       <item>
@@ -1668,16 +1779,22 @@
        </spacer>
       </item>
       <item>
-       <widget class="QPushButton" name="btn_load">
+       <widget class="QPushButton" name="btn_save">
+        <property name="toolTip">
+         <string>Save values in text boxes.</string>
+        </property>
         <property name="text">
-         <string>load settings</string>
+         <string>save settings</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="btn_save">
+       <widget class="QPushButton" name="btn_load">
+        <property name="toolTip">
+         <string>Load values of textboxes from save and load data.</string>
+        </property>
         <property name="text">
-         <string>save settings</string>
+         <string>load settings</string>
         </property>
        </widget>
       </item>
