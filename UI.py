@@ -18,20 +18,6 @@ import matplotlib
 # Ensure using PyQt5 backend
 matplotlib.use('Qt5Agg')
 
-
-SMALL_SIZE = 2
-MEDIUM_SIZE = 3
-BIGGER_SIZE = 3.5
-
-plt.rc('font', size=SMALL_SIZE)          # controls default text sizes
-plt.rc('axes', titlesize=BIGGER_SIZE)     # fontsize of the axes title
-plt.rc('axes', labelsize=MEDIUM_SIZE)    # fontsize of the x and y labels
-plt.rc('xtick', labelsize=SMALL_SIZE)    # fontsize of the tick labels
-plt.rc('ytick', labelsize=SMALL_SIZE)    # fontsize of the tick labels
-plt.rc('legend', fontsize=SMALL_SIZE)    # legend fontsize
-plt.rc('figure', titlesize=BIGGER_SIZE)  # fontsize of the figure title
-
-
 ui_file = r'MSI_plotting.ui'
 
 
@@ -473,7 +459,6 @@ class Spectra:
 
 @dataclass
 class Options:
-    resolution_saves: int
     kernel_mode: str
     width_filter: int
     plt_SNR: bool
@@ -484,7 +469,6 @@ class Options:
     flip: bool
     label_unit: str
     autosave: bool
-    aspect_ratio: float
 
 
 class MassFile:
@@ -889,15 +873,22 @@ class UI(QtWidgets.QMainWindow):
         except:
             print('filter width must be number')
             return
+
         try:
-            ar = self.findChild(QtWidgets.QLineEdit, 'lineEdit_ar').text()
-            ar = float(ar)
-            if ar <= 0:
-                print('aspect ratio must be a positive number')
-                return
+            SMALL_SIZE = self.horizontalScrollBar.value() / 10
+            MEDIUM_SIZE = SMALL_SIZE * 3 / 2
+            BIGGER_SIZE = SMALL_SIZE * 5 / 3
+
+            plt.rc('font', size=SMALL_SIZE)          # controls default text sizes
+            plt.rc('axes', titlesize=BIGGER_SIZE)     # fontsize of the axes title
+            plt.rc('axes', labelsize=MEDIUM_SIZE)    # fontsize of the x and y labels
+            plt.rc('xtick', labelsize=SMALL_SIZE)    # fontsize of the tick labels
+            plt.rc('ytick', labelsize=SMALL_SIZE)    # fontsize of the tick labels
+            plt.rc('legend', fontsize=SMALL_SIZE)    # legend fontsize
+            plt.rc('figure', titlesize=BIGGER_SIZE)  # fontsize of the figure title
+            print('updated small fs to', SMALL_SIZE)
         except:
-            print('aspect ratio must be a positive number')
-            return
+            pass
 
         flip = self.findChild(QtWidgets.QCheckBox, 'checkBox_flip_image').isChecked()
         autosave = self.findChild(QtWidgets.QCheckBox, 'checkBox_autosave').isChecked()
@@ -914,7 +905,6 @@ class UI(QtWidgets.QMainWindow):
         unit_labels = self.findChild(QtWidgets.QComboBox, 'comboBox_unit').currentText()
 
         self.opts = Options(
-            resolution_saves=resolution_saves,
             kernel_mode=kernel_mode,
             width_filter=width_filter,
             plt_SNR=snr,
@@ -925,7 +915,6 @@ class UI(QtWidgets.QMainWindow):
             flip=flip,
             label_unit=unit_labels,
             autosave=autosave,
-            aspect_ratio=ar
         )
 
     def initiate_plt_area(self):
@@ -1015,8 +1004,8 @@ class UI(QtWidgets.QMainWindow):
             'lineEdit_title', 'checkBox_flip_image', 'lineEdit_wf',
             'comboBox_plt_SNR', 'checkBox_norm_spectra', 'comboBox_km',
             'lineEdit_n_labels', 'comboBox_unit', 'lineEdit_do', 'lineEdit_dp',
-            'lineEdit_resolution', 'lineEdit_dir_imgs', 'checkBox_autosave',
-            'lineEdit_image_name', 'lineEdit_ar'
+            'lineEdit_dir_imgs', 'checkBox_autosave',
+            'lineEdit_image_name'
         ]
 
         entries = []
