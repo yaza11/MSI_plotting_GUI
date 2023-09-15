@@ -14,4 +14,4 @@ Testfiles are included in the folder: Open the test_data.txt as the file spectra
 Now you should see an entry in the field next to plot mz [Da]. Hit plot. 
 You can also directly enter a mass or up to three seperated by semicolons. The widgets on the right of the plot area allow to modify plotting options. You can save the current options and afterwards load them with the buttons in the bottom right corner.
 If you loaded in a file of masses, you can also navigate the entries with the left and right button or plot all compounds. 
-You can also choose to plot all compounds in the mass list file. The pannels below the plot allow you to save the plots. You can also choose to save any plot that 
+You can also choose to plot all compounds in the mass list file. The pannels below the plot allow you to save the plots. You can also choose to save any plot that shows up by enableing autosaving. 
