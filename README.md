@@ -15,3 +15,6 @@ Now you should see an entry in the field next to plot mz [Da]. Hit plot.
 You can also directly enter a mass or up to three seperated by semicolons. The widgets on the right of the plot area allow to modify plotting options. You can save the current options and afterwards load them with the buttons in the bottom right corner.
 If you loaded in a file of masses, you can also navigate the entries with the left and right button or plot all compounds. 
 You can also choose to plot all compounds in the mass list file. The pannels below the plot allow you to save the plots. You can also choose to save any plot that shows up by enableing autosaving. 
+
+If you want to create a list of compounds yourself, take a look at the example files. Mass and name columns will be detected automatically, if they have appropriate names. 
+To plot multiple (2 or 3) compounds together in one plot, you have to create an index column where each compound has an index. Compounds with the same index will be plotted together.
