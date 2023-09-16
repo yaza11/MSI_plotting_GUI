@@ -1,15 +1,24 @@
 # MSI_plotting_GUI
 GUI for loading and plotting MSI data
 
-# How to use
+# Installation: Executable
+Download the UI.zip-file.
+
+Unpack the zip-file and open the folder. Locate the UI.exe-file and double-click it. The GUI should pop up shortly afterwards. 
+
+You may want to crete a shortcut to the UI.exe as it can be tedious to locate
+
+# Installation: Python
 Get Python 3 (developed under python 3.11 but should work for older and newer versions). 
 
-Download the zip-file. 
+Download everything except the UI.zip. 
+
 You may have to install the necessary packages (PyQt5, Numpy, Pandas)
-Unpack the zip-file. 
 
 Run the UI.py file.
 
+
+# How to use
 Testfiles are included in the folder: Open the test_data.txt as the file spectra txt and hit read and any of the other txt- or csv-file as the mass list file and hit read.
 Now you should see an entry in the field next to plot mz [Da]. Hit plot. 
 You can also directly enter a mass or up to three seperated by semicolons. The widgets on the right of the plot area allow to modify plotting options. You can save the current options and afterwards load them with the buttons in the bottom right corner.
