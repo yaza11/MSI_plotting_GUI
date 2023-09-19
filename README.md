@@ -2,11 +2,11 @@
 GUI for loading and plotting MSI data
 
 # Installation: Executable
-Download the UI.zip-file.
+Download the UI.zip-file (Link will be added to this file soon, at the moment this is not available).
 
 Unpack the zip-file and open the folder. Locate the UI.exe-file and double-click it. The GUI should pop up shortly afterwards. 
 
-You may want to crete a shortcut to the UI.exe as it can be tedious to locate
+You may want to create a shortcut to the UI.exe as it can be tedious to locate
 
 # Installation: Python
 Get Python 3 (developed under python 3.11 but should work for older and newer versions). 
