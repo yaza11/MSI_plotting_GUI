@@ -1007,8 +1007,11 @@ class UI(QtWidgets.QMainWindow):
             dpi = float(self.lineEdit_resolution.text())
         except:
             dpi = 600
-        self.fig.savefig(os.path.join(folder_imgs, name), dpi=dpi)
-        print(f'saved plot in {folder_imgs} as {name}')
+        try:
+            self.fig.savefig(os.path.join(folder_imgs, name), dpi=dpi)
+            print(f'saved plot in {folder_imgs} as {name}')
+        except AttributeError:
+            print('Create a figure first!')
 
     def save_settings(self):
         fields = [
