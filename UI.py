@@ -498,7 +498,10 @@ class MassFile:
         elif suffix == '.xlsx':
             self.df = pd.read_excel(self.file_path)
         # strip whitespaces
-        self.df = self.df.map(lambda x: x.strip() if isinstance(x, str) else x)
+        try:
+            self.df = self.df.map(lambda x: x.strip() if isinstance(x, str) else x)
+        except:
+            self.df = self.df.applymap(lambda x: x.strip() if isinstance(x, str) else x)
         self.df.columns = self.df.columns.str.strip()
         print('read file as')
         print(self.df.head(5))
@@ -849,9 +852,9 @@ class UI(QtWidgets.QMainWindow):
     def update_options(self):
         try:
             resolution_saves = self.findChild(QtWidgets.QLineEdit, 'lineEdit_resolution').text()
-            resolution_saves = int(resolution_saves)
+            resolution_saves = float(resolution_saves)
         except:
-            print('resolution must be whole number')
+            print('resolution must be number')
             return
         try:
             N_labels = self.findChild(QtWidgets.QLineEdit, 'lineEdit_n_labels').text()
@@ -878,10 +881,10 @@ class UI(QtWidgets.QMainWindow):
             print('filter width must be number')
             return
         try:
-            resolution_saves = int(self.lineEdit_resolution.text())
+            resolution_saves = float(self.lineEdit_resolution.text())
         except:
             resolution_saves = 600
-            print('resolution must be whole number bigger than 0, using default value of 600')
+            print('resolution must be number bigger than 0, using default value of 600')
         try:
             SMALL_SIZE = self.horizontalScrollBar.value() / 10
             MEDIUM_SIZE = SMALL_SIZE * 3 / 2
