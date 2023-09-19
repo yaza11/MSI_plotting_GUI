@@ -66,7 +66,7 @@ def get_data(file_path: str):
             # skip first line (only contains information about the number of pixels)
             if i != 0:
                 # values in line are separated by semicolons
-                pixel_entries = line.split(';')
+                pixel_entries = line.replace(',', '.').split(';')
                 pixel_name, n_mzs = pixel_entries[:2]
                 # making use of start:stop:step notation
                 mzs = pixel_entries[2::3]
@@ -469,6 +469,7 @@ class Options:
     flip: bool
     label_unit: str
     autosave: bool
+    resolution_saves: int
 
 
 class MassFile:
@@ -497,7 +498,7 @@ class MassFile:
         elif suffix == '.xlsx':
             self.df = pd.read_excel(self.file_path)
         # strip whitespaces
-        self.df = self.df.applymap(lambda x: x.strip() if isinstance(x, str) else x)
+        self.df = self.df.map(lambda x: x.strip() if isinstance(x, str) else x)
         self.df.columns = self.df.columns.str.strip()
         print('read file as')
         print(self.df.head(5))
@@ -579,6 +580,9 @@ class MassFile:
         return self.get_entry_at_current_idx()
 
     def cleanup(self):
+        # throw out bad indizes
+        mask_valid = self.df[self.column_indizes] >= 0
+        self.df = self.df.loc[mask_valid, :]
         # check if columns contain valid entries
         try:
             self.df[self.column_masses] = [float(m) for m in self.get_masses()]
@@ -873,7 +877,11 @@ class UI(QtWidgets.QMainWindow):
         except:
             print('filter width must be number')
             return
-
+        try:
+            resolution_saves = int(self.lineEdit_resolution.text())
+        except:
+            resolution_saves = 600
+            print('resolution must be whole number bigger than 0, using default value of 600')
         try:
             SMALL_SIZE = self.horizontalScrollBar.value() / 10
             MEDIUM_SIZE = SMALL_SIZE * 3 / 2
@@ -915,6 +923,7 @@ class UI(QtWidgets.QMainWindow):
             flip=flip,
             label_unit=unit_labels,
             autosave=autosave,
+            resolution_saves=resolution_saves
         )
 
     def initiate_plt_area(self):
@@ -974,6 +983,7 @@ class UI(QtWidgets.QMainWindow):
         )
 
         self.updata_plt_area()
+        self.lineEdit_resolution.setText(str(self.canvas.figure.get_dpi()))
 
         # update name
         if title is None:
@@ -993,19 +1003,22 @@ class UI(QtWidgets.QMainWindow):
         folder_imgs = self.findChild(QtWidgets.QLineEdit, 'lineEdit_dir_imgs').text()
         # get name
         name = self.findChild(QtWidgets.QLineEdit, 'lineEdit_image_name').text() + '.png'
-
-        self.fig.savefig(os.path.join(folder_imgs, name), dpi=self.opts.resolution_saves)
+        try:
+            dpi = float(self.lineEdit_resolution.text())
+        except:
+            dpi = 600
+        self.fig.savefig(os.path.join(folder_imgs, name), dpi=dpi)
         print(f'saved plot in {folder_imgs} as {name}')
 
     def save_settings(self):
         fields = [
             'lineEdit_file_spectra', 'lineEdit_mass_list', 'lineEdit_col_mz',
             'lineEdit_col_names', 'lineEdit_col_idx', 'lineEdit_mz_val',
-            'lineEdit_title', 'checkBox_flip_image', 'lineEdit_wf',
+            'lineEdit_title', 'checkBox_flip_image', 'lineEdit_wf', 'lineEdit_resolution'
             'comboBox_plt_SNR', 'checkBox_norm_spectra', 'comboBox_km',
             'lineEdit_n_labels', 'comboBox_unit', 'lineEdit_do', 'lineEdit_dp',
             'lineEdit_dir_imgs', 'checkBox_autosave',
-            'lineEdit_image_name'
+            'lineEdit_image_name', 'horizontalScrollBar'
         ]
 
         entries = []
@@ -1017,6 +1030,8 @@ class UI(QtWidgets.QMainWindow):
                 e = self.findChild(QtWidgets.QComboBox, field).currentText()
             elif widget_type == 'checkBox':
                 e = self.findChild(QtWidgets.QCheckBox, field).isChecked()
+            elif widget_type == 'horizontalScrollBar':
+                e = self.findChild(QtWidgets.QScrollBar, field).value()
             else:
                 raise NotImplementedError
             entries.append(e)
@@ -1032,18 +1047,19 @@ class UI(QtWidgets.QMainWindow):
             d = pickle.load(handle)
 
         for field, entry in d.items():
-            widget_type = field.split('_')[0]
-            if widget_type == 'lineEdit':
-                e = self.findChild(QtWidgets.QLineEdit, field)
-                e.setText(entry)
-            elif widget_type == 'comboBox':
-                e = self.findChild(QtWidgets.QComboBox, field)
-                e.setCurrentText(entry)
-            elif widget_type == 'checkBox':
-                e = self.findChild(QtWidgets.QCheckBox, field)
-                e.setChecked(entry)
-            else:
-                raise NotImplementedError
+            try:
+                widget_type = field.split('_')[0]
+                if widget_type == 'lineEdit':
+                    e = self.findChild(QtWidgets.QLineEdit, field)
+                    e.setText(entry)
+                elif widget_type == 'comboBox':
+                    e = self.findChild(QtWidgets.QComboBox, field)
+                    e.setCurrentText(entry)
+                elif widget_type == 'checkBox':
+                    e = self.findChild(QtWidgets.QCheckBox, field)
+                    e.setChecked(entry)
+            except:
+                pass
 
         self.read_data()
         self.read_mass_file()

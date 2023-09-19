@@ -92,6 +92,9 @@
         <property name="toolTip">
          <string>Input the file path to an txt file with spectra exported from a .d folder by pasting the path direectly into the box or browsing the directories. Afterwards press &quot;Load&quot; to load in the data. You can directly paste a file path into here.</string>
         </property>
+        <property name="clearButtonEnabled">
+         <bool>false</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -1023,7 +1026,7 @@
           <item row="10" column="0">
            <widget class="QLabel" name="label_7">
             <property name="toolTip">
-             <string>Deprecated. Will be ignored.</string>
+             <string>The resolution of saved images. Default is 600. Will be updated if window size is changed.</string>
             </property>
             <property name="text">
              <string>Resolution png [dpi]</string>
@@ -1042,7 +1045,10 @@
              <string>600</string>
             </property>
             <property name="readOnly">
-             <bool>true</bool>
+             <bool>false</bool>
+            </property>
+            <property name="clearButtonEnabled">
+             <bool>false</bool>
             </property>
            </widget>
           </item>
@@ -1462,7 +1468,7 @@
              <number>1</number>
             </property>
             <property name="maximum">
-             <number>100</number>
+             <number>200</number>
             </property>
             <property name="pageStep">
              <number>10</number>
