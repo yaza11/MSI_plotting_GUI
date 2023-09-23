@@ -1,5 +1,7 @@
 """Setp and run GUI to plot MSI images."""
 from PyQt5 import QtWidgets, uic, QtCore, QtGui
+import qdarktheme
+
 import sys
 from dataclasses import dataclass
 from typing import Iterable
@@ -851,12 +853,6 @@ class UI(QtWidgets.QMainWindow):
 
     def update_options(self):
         try:
-            resolution_saves = self.findChild(QtWidgets.QLineEdit, 'lineEdit_resolution').text()
-            resolution_saves = float(resolution_saves)
-        except:
-            print('resolution must be number')
-            return
-        try:
             N_labels = self.findChild(QtWidgets.QLineEdit, 'lineEdit_n_labels').text()
             N_labels = int(N_labels)
         except:
@@ -897,7 +893,7 @@ class UI(QtWidgets.QMainWindow):
             plt.rc('ytick', labelsize=SMALL_SIZE)    # fontsize of the tick labels
             plt.rc('legend', fontsize=SMALL_SIZE)    # legend fontsize
             plt.rc('figure', titlesize=BIGGER_SIZE)  # fontsize of the figure title
-            print('updated small fs to', SMALL_SIZE)
+            # print('updated small fs to', SMALL_SIZE)
         except:
             pass
 
@@ -986,7 +982,6 @@ class UI(QtWidgets.QMainWindow):
         )
 
         self.updata_plt_area()
-        self.lineEdit_resolution.setText(str(self.canvas.figure.get_dpi()))
 
         # update name
         if title is None:
@@ -1020,7 +1015,7 @@ class UI(QtWidgets.QMainWindow):
         fields = [
             'lineEdit_file_spectra', 'lineEdit_mass_list', 'lineEdit_col_mz',
             'lineEdit_col_names', 'lineEdit_col_idx', 'lineEdit_mz_val',
-            'lineEdit_title', 'checkBox_flip_image', 'lineEdit_wf', 'lineEdit_resolution'
+            'lineEdit_title', 'checkBox_flip_image', 'lineEdit_wf', 'lineEdit_resolution',
             'comboBox_plt_SNR', 'checkBox_norm_spectra', 'comboBox_km',
             'lineEdit_n_labels', 'comboBox_unit', 'lineEdit_do', 'lineEdit_dp',
             'lineEdit_dir_imgs', 'checkBox_autosave',
@@ -1073,5 +1068,6 @@ class UI(QtWidgets.QMainWindow):
 
 if __name__ == '__main__':
     app = QtWidgets.QApplication(sys.argv)
+    qdarktheme.setup_theme()
     window = UI()
     sys.exit(app.exec_())

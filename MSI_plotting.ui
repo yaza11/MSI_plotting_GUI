@@ -8,7 +8,7 @@
     <x>0</x>
     <y>0</y>
     <width>815</width>
-    <height>818</height>
+    <height>759</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -20,7 +20,7 @@
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
     <property name="spacing">
-     <number>0</number>
+     <number>1</number>
     </property>
     <item>
      <layout class="QHBoxLayout" name="spectra_file_hl">
@@ -1026,7 +1026,7 @@
           <item row="10" column="0">
            <widget class="QLabel" name="label_7">
             <property name="toolTip">
-             <string>The resolution of saved images. Default is 600. Will be updated if window size is changed.</string>
+             <string>The resolution of saved images. Default is 600.</string>
             </property>
             <property name="text">
              <string>Resolution png [dpi]</string>
@@ -1349,7 +1349,7 @@
              <number>0</number>
             </property>
             <property name="sizeConstraint">
-             <enum>QLayout::SetFixedSize</enum>
+             <enum>QLayout::SetMinimumSize</enum>
             </property>
             <item>
              <widget class="QLineEdit" name="lineEdit_dir_imgs">
@@ -1361,13 +1361,13 @@
               </property>
               <property name="minimumSize">
                <size>
-                <width>50</width>
+                <width>100</width>
                 <height>0</height>
                </size>
               </property>
               <property name="maximumSize">
                <size>
-                <width>50</width>
+                <width>100</width>
                 <height>16777215</height>
                </size>
               </property>
@@ -1392,13 +1392,13 @@
               </property>
               <property name="minimumSize">
                <size>
-                <width>100</width>
+                <width>50</width>
                 <height>0</height>
                </size>
               </property>
               <property name="maximumSize">
                <size>
-                <width>100</width>
+                <width>50</width>
                 <height>16777215</height>
                </size>
               </property>
@@ -1415,22 +1415,6 @@
                <string>Browse</string>
               </property>
              </widget>
-            </item>
-            <item>
-             <spacer name="horizontalSpacer_34">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeType">
-               <enum>QSizePolicy::Ignored</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>40</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
             </item>
            </layout>
           </item>
@@ -1934,18 +1918,6 @@
      <height>21</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menuPlotting">
-    <property name="title">
-     <string>Plotting</string>
-    </property>
-   </widget>
-   <widget class="QMenu" name="menuFeature_table_creation">
-    <property name="title">
-     <string>Feature table creation</string>
-    </property>
-   </widget>
-   <addaction name="menuPlotting"/>
-   <addaction name="menuFeature_table_creation"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
