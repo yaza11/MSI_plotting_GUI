@@ -2,7 +2,7 @@
 GUI for loading and plotting MSI data
 
 # Installation: Executable
-Download the UI.zip-file (Link will be added to this file soon, at the moment this is not available).
+Download the UI.zip-file (https://seafile.zfn.uni-bremen.de/f/8fd49d6f94d54e099529/?dl=1).
 
 Unpack the zip-file and open the folder. Locate the UI.exe-file and double-click it. The GUI should pop up shortly afterwards. 
 
